@@ -25,14 +25,18 @@ lng <- sapply(data$geometry.coordinates, function(c) { c[1] })
 
 df <- data.frame(id = data$properties.objectid,
                  operator = data$properties.betreiber_txt,
+                 name = data$properties.bezeichnung,
                  lat = lat,
                  lng = lng)
+
+df$name[is.na(df$name)] <- "unnamed"
 
 ```
 
 ```{r map, message=FALSE}
 df %>% leaflet() %>%
     addTiles() %>%
-    addMarkers(clusterOptions = markerClusterOptions()) 
+    addMarkers(clusterOptions = markerClusterOptions(),
+               popup = df$name) 
 ```
 
