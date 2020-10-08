@@ -1,0 +1,38 @@
+---
+title: "Water Fountains in Zurich, Switzerland"
+author: "patmau"
+date: "10/8/2020"
+output: ioslides_presentation
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+
+library(leaflet)
+library(jsonlite)
+```
+
+
+***
+
+```{r process, comment=""}
+json <- fromJSON("wvz.wvz_brunnen.json", flatten = TRUE)
+
+data <- json$features
+
+lat <- sapply(data$geometry.coordinates, function(c) { c[2] })
+lng <- sapply(data$geometry.coordinates, function(c) { c[1] })
+
+df <- data.frame(id = data$properties.objectid,
+                 operator = data$properties.betreiber_txt,
+                 lat = lat,
+                 lng = lng)
+
+```
+
+```{r map, message=FALSE}
+df %>% leaflet() %>%
+    addTiles() %>%
+    addMarkers(clusterOptions = markerClusterOptions()) 
+```
+
