@@ -1,5 +1,5 @@
 ---
-title: "Water Fountains in Zurich, Switzerland"
+title: "Water Fountains and Wells in Zurich, Switzerland"
 author: "patmau"
 date: "10/8/2020"
 output: ioslides_presentation
@@ -40,3 +40,5 @@ df %>% leaflet() %>%
                popup = df$name) 
 ```
 
+
+Data source: [https://data.stadt-zuerich.ch/dataset/geo_brunnen]()
