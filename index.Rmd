@@ -1,8 +1,8 @@
 ---
 title: "Water Fountains and Wells in Zurich, Switzerland"
 author: "patmau"
-date: "10/8/2020"
-output: ioslides_presentation
+date: "10/10/2020"
+output: html_document
 ---
 
 ```{r setup, include=FALSE}
@@ -12,8 +12,6 @@ library(leaflet)
 library(jsonlite)
 ```
 
-
-***
 
 ```{r process, comment=""}
 json <- fromJSON("wvz.wvz_brunnen.json", flatten = TRUE)
